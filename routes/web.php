@@ -30,16 +30,15 @@ Route::get('/quiz/{subject_id}/{question_id}' , function($subject_id , $question
 /**
  * Admin Routes for Adding topics and questions 
  */
-Route::get('/admin' , function(){
-    //return 
-    echo 'hi';
-});
+Route::get('/admin' , 'AdminController@show');
 
 Route::prefix('/admin/subject')->group(function(){
     //return list all subjects  with option to edit or delete 
-    Route::get('/' , 'AdminController@show');
+    Route::get('/' , 'AdminController@listTopic');
     
     Route::get('/add' , 'AdminController@add');
+
+    Route::post('/add' , 'AdminController@storeTopic');
     
     Route::get('/edit/{id}' , 'AdminController@edit');
     //submiting editing

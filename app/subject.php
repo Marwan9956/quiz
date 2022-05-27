@@ -11,7 +11,7 @@ class subject extends Model
     //primary key
     protected $primaryKey = 'id';
     //dateFormat
-    protected $dateFormat = 'U';
+    
     //fillable columns 
     protected $fillable = ['title'];
 
