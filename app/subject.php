@@ -22,6 +22,6 @@ class subject extends Model
      * Get Question of subject
      */
     public function questions(){
-        return $this->hasMany('App\question');
+        return $this->hasMany('App\question' , 'subject_id' , 'id');
     }
 }

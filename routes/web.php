@@ -11,6 +11,16 @@
 |
 */
 
+Auth::routes([
+
+    'register' => false, // Register Routes...
+  
+    'reset' => false, // Reset Password Routes...
+  
+    'verify' => false, // Email Verification Routes...
+  
+]);
+
 /**
  * List all topics for quiz
  */
@@ -18,17 +28,12 @@ Route::get('/', function () {
     //return all list of topics 
 })->name('home');
 
-/**
- * Quiz questions based on subject id 
- */
-Route::get('/quiz/{subject_id}/{question_id}' , function($subject_id , $question_id = 1){
 
-})->name('quiz');
 
 
 
 /**
- * Admin Routes for Adding topics and questions 
+ * Admin Routes for Adding topics  
  */
 Route::get('/admin' , 'AdminController@show');
 
@@ -40,25 +45,43 @@ Route::prefix('/admin/subject')->group(function(){
 
     Route::post('/add' , 'AdminController@storeTopic');
     
-    Route::get('/edit/{id}' , 'AdminController@edit');
+    
+    Route::get('/edit/{id}' , 'AdminController@edit')->name('subject.edit');
     //submiting editing
 });
+
+/**
+ * Admin Routes for Editing and deleting topics 
+ */
+Route::delete('/admin/subject/delete/{id}' , 'AdminController@deleteTopic')->name('subject.delete');
+
+Route::PUT('/admin/subject/edit/{id}' , 'AdminController@editTopic')->name('subject.edit.submit');
+
+
+
 
 /**
  * Adding questions 
  */
 Route::prefix('/admin/question')->group(function(){
     //list all question of subject 
-    Route::get('/{subject_id}' , function($subject_id){
-        return $subject_id;
-    });
+    Route::get('/subject/{subject_id}' , 'AdminController@showQuestions')->name('question.list');
 
-    Route::get('/{subject_id}/add' , function($subject_id){
+    Route::get('/subject/{subject_id}/{question_id}/edit' , 'AdminController@editQuestionForm')->name('question.editForm');
 
-    });
+    Route::get('/{subject_id}/add' , 'AdminController@addQuestion')->name('question.add');
 
-    Route::get('/{subject_id}/update' , function($subject_id){
+    Route::post('/{subject_id}/add' , 'AdminController@storeQuestion')->name('question.store');
 
-    });
+    
 });
+
+/**
+ * Routes for Editing and deleting Questions 
+ */
+
+ Route::PUT('/admin/question/{question_id}/subject/{subject_id}' , 'AdminController@editQuestionSubmit')->name('question.editSubmit');
+ Route::Delete('/admin/question/{question_id}' ,  'AdminController@deleteQuestion')->name('question.delete');
+
+ 
 

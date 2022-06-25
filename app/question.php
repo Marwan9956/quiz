@@ -10,7 +10,7 @@ class question extends Model
 
     protected $primaryKey = "id";
 
-    protected $dateFormat = 'U';
+    //protected $dateFormat = 'U';
 
     protected $fillable = ['question' , 'subject_id'];
 
@@ -28,6 +28,6 @@ class question extends Model
      * To get the answers of choices  
      */
     public function answers(){
-        return $this->hasMeny('App\answer');
+        return $this->hasMany('App\answer', 'question_id', 'id');
     }
 }
