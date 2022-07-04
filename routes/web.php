@@ -22,11 +22,20 @@ Auth::routes([
 ]);
 
 /**
+ * Main Route 
+ */
+Route::get('/' , function(){
+    return redirect()->route('/quiz');
+});
+
+/**
  * List all topics for quiz
  */
-Route::get('/', function () {
-    //return all list of topics 
-})->name('home');
+Route::get('/quiz' , 'QuizController@show')->name('quiz');
+
+Route::get('/quiz/{subject_id}/question','QuizController@displayQuestion')->name('takeQuiz');
+
+Route::post('/quiz/{subject_id}/question/{question_id}','QuizController@processQuestion')->name('quiz.answerProsess');
 
 
 

@@ -103,3 +103,35 @@ body {
   #inlineForm{
     display:inline;
   }
+
+  .quizContainer{
+    border: 1px solid black;
+    padding: 10px;
+    width:178px;
+    max-width:250px;
+    /*flex-basis: 25%;*/
+    margin:5px 20px;
+    text-align:center;
+  }
+  .quizContainer h4{
+    font-weight: bold;
+    padding: 15px;
+  }
+  .quizContainer a{
+    margin-bottom: 25px;
+  }
+
+  .quiz-score{
+    text-align: right;
+    margin: 0;
+    width:35%;
+  }
+
+  .form-check{
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  .flex-score > div{
+    flex-grow : 1;
+  }
