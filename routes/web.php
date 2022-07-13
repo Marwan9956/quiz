@@ -25,7 +25,7 @@ Auth::routes([
  * Main Route 
  */
 Route::get('/' , function(){
-    return redirect()->route('/quiz');
+    return redirect()->route('quiz');
 });
 
 /**
@@ -44,7 +44,9 @@ Route::post('/quiz/{subject_id}/question/{question_id}','QuizController@processQ
 /**
  * Admin Routes for Adding topics  
  */
-Route::get('/admin' , 'AdminController@show');
+Route::get('/admin' , function(){
+    return redirect('/admin/subject');
+});
 
 Route::prefix('/admin/subject')->group(function(){
     //return list all subjects  with option to edit or delete 
